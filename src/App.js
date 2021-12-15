@@ -29,16 +29,16 @@ function App() {
         </button>
       </div>
       <ul>
-          //se utliza task en singular por que es la variables de la funcion, podria ser task como x
-          
         {tasks.map((task) => {
           return (
-          <li onClick={() =>
-            setTasks(tasks.filter((t)=> t !==task));
-          }
-            {task}
-          </li>;
-
+            <li
+              onClick={() => {
+                setTasks(tasks.filter((t) => t !== task));
+              }}
+            >
+              {task}
+            </li>
+          );
         })}
       </ul>
     </div>
