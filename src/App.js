@@ -1,22 +1,46 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [title, setTitle] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const pendingTasks = tasks.length;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Estamos aprendiendo</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <h1>Task Manager</h1>
+      <p>Pending Task:{pendingTasks}</p>
+      <div>
+        <input
+          type="text"
+          value={title}
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            setTasks([title, ...tasks]);
+            setTitle("");
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Add
+        </button>
+      </div>
+      <ul>
+          //se utliza task en singular por que es la variables de la funcion, podria ser task como x
+          
+        {tasks.map((task) => {
+          return (
+          <li onClick={() =>
+            setTasks(tasks.filter((t)=> t !==task));
+          }
+            {task}
+          </li>;
+
+        })}
+      </ul>
     </div>
   );
 }
